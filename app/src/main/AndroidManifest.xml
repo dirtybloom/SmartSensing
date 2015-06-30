@@ -34,6 +34,7 @@
         </receiver>
 
         <service android:name=".sys.geolocation.GeolocationService"/>
+        <service android:name=".sys.speedtest.SpeedtestService"/>
 
     </application>
 

@@ -16,6 +16,8 @@ public class SpeedtestResult extends SysBundle {
 
     public static final String LATENCY_KEY = SysConstants.KEY + "EXTRA_LATENCY";
 
+    public static final String DBM_KEY = SysConstants.KEY + "EXTRA_DBM";
+
     public static final String NETWORK_OPERATOR_NAME_KEY = SysConstants.KEY + "EXTRA_NETWORK_OPERATOR_NAME";
 
     public static final String NETWORK_CLASS_KEY = SysConstants.KEY + "EXTRA_NETWORK_CLASS";
@@ -26,32 +28,41 @@ public class SpeedtestResult extends SysBundle {
 
     public static final String ERROR_KEY = SysConstants.KEY + "EXTRA_ERROR";
 
+
     public SpeedtestResult(Bundle bundle) {
         super(bundle);
     }
 
-    public float getDownloadSpeed(){
-        return bundle.getFloat(DOWNLOAD_SPEED_KEY);
+    public String getDownloadSpeed(){
+        return bundle.getString(DOWNLOAD_SPEED_KEY);
     }
 
-    public void setDownloadSpeed(float downloadSpeed){
-        bundle.putFloat(DOWNLOAD_SPEED_KEY,downloadSpeed);
+    public void setDownloadSpeed(String downloadSpeed){
+        bundle.putString(DOWNLOAD_SPEED_KEY, downloadSpeed);
     }
 
     public float getUploadSpeed(){
         return bundle.getFloat(UPLOAD_SPEED_KEY);
     }
 
-    public void setUploadSpeed(float uploadSpeed){
-        bundle.putFloat(UPLOAD_SPEED_KEY,uploadSpeed);
+    public void setUploadSpeed(String uploadSpeed){
+        bundle.putString(UPLOAD_SPEED_KEY, uploadSpeed);
     }
 
-    public long getLatency(){
-        return bundle.getLong(LATENCY_KEY);
+    public String getLatency(){
+        return bundle.getString(LATENCY_KEY);
     }
 
-    public void setLatency(long latency){
-        bundle.putLong(LATENCY_KEY,latency);
+    public void setLatency(String latency){
+        bundle.putString(LATENCY_KEY, latency);
+    }
+
+    public String getDbm(){
+        return bundle.getString(DBM_KEY);
+    }
+
+    public void setDbm(String dbm){
+        bundle.putString(DBM_KEY,dbm);
     }
 
     public String getNetworkClass(){

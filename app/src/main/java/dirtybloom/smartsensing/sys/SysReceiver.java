@@ -12,6 +12,8 @@ import android.util.Log;
 import dirtybloom.smartsensing.sys.geolocation.GeolocationParameter;
 import dirtybloom.smartsensing.sys.geolocation.GeolocationResult;
 import dirtybloom.smartsensing.sys.geolocation.GeolocationService;
+import dirtybloom.smartsensing.sys.speedtest.SpeedtestParameter;
+import dirtybloom.smartsensing.sys.speedtest.SpeedtestService;
 
 /**
  * Created by dirtybloom on 30/06/2015.
@@ -46,7 +48,7 @@ public class SysReceiver extends BroadcastReceiver {
             GeolocationService.requestLocation(context, intent);
 
         }else if(action.equals(ACTION_GEOLOCATION_DONE)){
-            Log.d("SysReceiver",ACTION_GEOLOCATION_DONE);
+            Log.d("SysReceiver", ACTION_GEOLOCATION_DONE);
             GeolocationResult geolocationResult = new GeolocationResult(intent.getExtras());
             handleLocation(geolocationResult.getLocation());
 
@@ -57,6 +59,7 @@ public class SysReceiver extends BroadcastReceiver {
 
         }else if(action.equals(ACTION_REQUEST_SPEEDTEST)){
 
+            SpeedtestService.requestSpeedtest(context,intent);
 
         }else if(action.equals(ACTION_SPEEDTEST_DONE)){
             handleSpeedtestResult();
@@ -72,7 +75,16 @@ public class SysReceiver extends BroadcastReceiver {
 
         Intent intent = new Intent();
         intent.setClass(context, SysReceiver.class);
-        intent.setAction(ACTION_REQUEST_LOCATION);
+
+        intent.setAction(ACTION_REQUEST_SPEEDTEST);
+
+        SpeedtestParameter speedtestParameter = new SpeedtestParameter(new Bundle());
+        speedtestParameter.setIntentToBroadcast(new Intent());
+
+        intent.putExtras(speedtestParameter.getBundle());
+
+        context.sendBroadcast(intent);
+       /* intent.setAction(ACTION_REQUEST_LOCATION);
 
         GeolocationParameter geolocationParameter = new GeolocationParameter(new Bundle());
         geolocationParameter.setIntentToBroadcast(new Intent());
@@ -83,7 +95,7 @@ public class SysReceiver extends BroadcastReceiver {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP,1000,pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,1000,pendingIntent);*/
     }
 
     private void handleLocation(Location location){
@@ -91,6 +103,8 @@ public class SysReceiver extends BroadcastReceiver {
         double longitude = location.getLongitude();
 
         Log.d("handleLocation", "latitude = " + latitude + " longitude = " + longitude);
+
+
     }
 
     private void handleGeolocationError(String error){

@@ -16,7 +16,7 @@ public class SysConstants {
 
     public static final long GEOLOCATION_TIMEOUT = 60 * 1000;
 
-    public static final String HOST = "127.0.0.1"; //localhost
+    public static final String HOST = "http://ipv4.download.thinkbroadband.com:8080/5MB.zip";
 
     public static final int CONNECTION_TIMEOUT = 3 * 1000;
 }
